@@ -1,11 +1,22 @@
 var d = document.getElementById("dibujo");
 var lienzo = d.getContext("2d");
 
-/*Esta es la estructura basica para identificar el Canvas */
+var text = document.getElementById("input-text");
+var button = document.getElementById("input-button");
+var ancho = d.width; 
+button.addEventListener("click", dibujoPorClick);
+
+
+
+function dibujoPorClick()
+{
+    var valor = parseInt(text.value);
+    
+    /*Esta es la estructura basica para identificar el Canvas */
 
 var l = 0;
-var lineas = 30;
-
+var lineas = text.value;
+var distancia = ancho / text.value;
 var xi, yi, xf, yf;
 
 var color = "red"
@@ -24,8 +35,8 @@ function drawLine(color, Xi, Yi, Xf, Yf)
 
 for(l = 0; l < lineas; l++)
 {
-    yi = 10 * l;
-    xf = 10 * (l + 1);
+    yi = distancia * l;
+    xf = distancia * (l + 1);
 
     drawLine(color, 0, yi, xf, 300 )
 
@@ -38,8 +49,8 @@ for(l = 0; l < lineas; l++)
     for (l = 0; l < lineas; l++)
     {
     
-        xi = 10 * l;
-        yf = 10 * (l + 1);
+        xi = distancia * l;
+        yf = distancia * (l + 1);
     
         drawLine(color, xi, 0, 300, yf);
     
@@ -51,8 +62,8 @@ for(l = 0; l < lineas; l++)
 
 for (l = 0; l < lineas; l++)
 {
-    yi = 300 - (l * 10);
-    xf = (l + 1) * 10;
+    yi = 300 - (l * distancia);
+    xf = (l + 1) * distancia;
 
     drawLine(color, 0, yi, xf, 0);
 
@@ -65,8 +76,11 @@ drawLine(color, 300, 10, 280, 300)
 
 for(l = 0; l < lineas; l++)
 {
-    yi = l * 10;
-    xf = 300 - (l * 10);
+    yi = l * distancia;
+    xf = 300 - (l * distancia);
 
     drawLine(color, 300, yi, xf, 300);
+}
+   
+    
 }
